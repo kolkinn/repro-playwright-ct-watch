@@ -1,0 +1,39 @@
+{
+  "name": "@demo/frontend",
+  "private": true,
+  "type": "module",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "concurrently --kill-others -n \"vite,relay\" -c \"#A1DAA0,#FF949B\" \"npm:dev-vite\" \"npm:watch-graphql\"",
+    "dev-vite": "vite",
+    "compile-graphql": "relay-compiler",
+    "watch-graphql": "relay-compiler --watch",
+    "typecheck": "tsc --watch",
+    "typecheck-others": "tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p playwright/tsconfig.json && tsc --build tsconfig.node.json --clean && tsc --build playwright/tsconfig.json --clean",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@demo/test-utils": "workspace:^",
+    "@playwright/experimental-ct-react": "^1.37.1",
+    "@types/node": "^16.18.36",
+    "@types/react": "^18.2.12",
+    "@types/react-dom": "^18.2.5",
+    "@vitejs/plugin-react": "^4.0.4",
+    "axe-core": "^4.7.2",
+    "babel-plugin-relay": "^15.0.0",
+    "concurrently": "^7.6.0",
+    "jsdom": "^22.1.0",
+    "sass": "^1.63.3",
+    "typescript": "^5.1.3",
+    "vite": "^4.4.9",
+    "vitest": "^0.34.2"
+  },
+  "volta": {
+    "extends": "../../package.json"
+  }
+}

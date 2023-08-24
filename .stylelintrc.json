@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-a11y/recommended",
+    "stylelint-config-prettier-scss"
+  ],
+  "plugins": ["stylelint-css-modules-no-global-scoped-selector"],
+  "rules": {
+    "css-modules/no-global-scoped-selector": [
+      true,
+      {
+        "fileExtensions": [".module.scss"]
+      }
+    ],
+    "a11y/selector-pseudo-class-focus": null
+  }
+}
