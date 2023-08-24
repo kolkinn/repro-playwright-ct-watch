@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "composite": true,
+    "strict": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "types": ["vite/client"]
+  },
+  "include": ["vite.config.ts", "playwright-ct.config.ts"]
+}

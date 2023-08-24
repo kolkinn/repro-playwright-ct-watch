@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Testing Page</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      <!--   TODO: Find a way to put this in a .js file   -->
+      const robimConfig = {
+        auth: {
+          clientId: "client 1",
+          authority: "authority 1",
+          scopes: ["do_whatever"],
+        },
+        apiUrl: "https://localhost/graphql",
+      };
+    </script>
+    <script type="module" src="./index.tsx"></script>
+  </body>
+</html>

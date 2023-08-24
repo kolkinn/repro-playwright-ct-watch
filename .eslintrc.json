@@ -1,0 +1,230 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "airbnb/hooks",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:@typescript-eslint/strict",
+    "prettier",
+    "plugin:playwright/recommended",
+    "./eslint-js-config.cjs"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": [
+      "./apps/*/tsconfig.json",
+      "./libs/*/tsconfig.json",
+      "./tsconfig.json",
+      "./apps/frontend/tsconfig.node.json",
+      "./apps/frontend/playwright/tsconfig.json"
+    ]
+  },
+  "plugins": ["@typescript-eslint", "import", "css-modules", "sort-keys"],
+  "rules": {
+    "css-modules/no-unused-class": ["warn", { "camelCase": "dashes-only" }],
+    "css-modules/no-undef-class": ["error", { "camelCase": "dashes-only" }],
+    "import/no-internal-modules": [
+      "error",
+      {
+        "allow": ["vitest/*", "react-dom/client", "**/types/*", "@*/**"]
+      }
+    ],
+    "import/order": [
+      "warn",
+      {
+        "groups": [["builtin", "external"], "internal", ["parent", "sibling", "index"]],
+        "alphabetize": {
+          "caseInsensitive": true,
+          "order": "asc"
+        },
+        "newlines-between": "always",
+        "pathGroups": [
+          {
+            "pattern": "@demo/**",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "**.scss",
+            "group": "sibling",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["builtin"]
+      }
+    ],
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["to"],
+        "aspects": ["invalidHref"]
+      }
+    ],
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allow": ["__REDUX_DEVTOOLS_EXTENSION_COMPOSE__", "__typename"],
+        "allowAfterThis": false,
+        "allowAfterSuper": false,
+        "enforceInMethodNames": true,
+        "allowAfterThisConstructor": false,
+        "allowFunctionParams": true,
+        "enforceInClassFields": false
+      }
+    ],
+    "sort-imports": [
+      "warn",
+      {
+        "allowSeparatedGroups": true,
+        "ignoreCase": true,
+        "ignoreDeclarationSort": true,
+        "ignoreMemberSort": false,
+        "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "libs/test-utils/**",
+          "cypress/**",
+          "test/**",
+          "tests/**",
+          "spec/**",
+          "**/__tests__/**",
+          "**/__mocks__/**",
+          "test.{ts,tsx}",
+          "test-*.{ts,tsx}",
+          "**/*{.,_}{test,spec,cy}.{ts,tsx}",
+          "**/webpack.config.js",
+          "**/webpack.config.ts",
+          "**/webpack.config.*.js",
+          "**/webpack.config.*.ts",
+          "**/rollup.config.js",
+          "**/rollup.config.ts",
+          "**/rollup.config.*.js",
+          "**/rollup.config.*.ts",
+          "**/.eslintrc.js",
+          "**/.eslintrc.ts"
+        ],
+        "optionalDependencies": false
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "@typescript-eslint/no-unnecessary-condition": [
+      "warn",
+      {
+        "allowConstantLoopConditions": true
+      }
+    ],
+    "no-unused-vars": [
+      "off",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": true,
+        "destructuredArrayIgnorePattern": "^_"
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": true,
+        "destructuredArrayIgnorePattern": "^_"
+      }
+    ],
+    "playwright/expect-expect": "off",
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": ["arrow-function"],
+        "unnamedComponents": ["arrow-function"]
+      }
+    ],
+    "react/jsx-no-useless-fragment": "off",
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/require-default-props": "off",
+    "@typescript-eslint/consistent-type-imports": [
+      "error",
+      {
+        "prefer": "type-imports"
+      }
+    ],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "variable",
+        "format": ["camelCase", "PascalCase", "UPPER_CASE"]
+      },
+      {
+        "selector": "variable",
+        "modifiers": ["unused"],
+        "format": ["camelCase", "PascalCase", "UPPER_CASE"],
+        "leadingUnderscore": "allow"
+      },
+      {
+        "selector": "function",
+        "format": ["camelCase", "PascalCase"]
+      },
+      {
+        "selector": "typeLike",
+        "format": ["PascalCase"]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.{test}.{ts,tsx}"],
+      "extends": ["plugin:mocha/recommended"],
+      "rules": {
+        "mocha/no-setup-in-describe": "off"
+      }
+    },
+    {
+      "files": ["libs/i18n/src/locales/**/*.{ts,tsx}"],
+      "rules": {
+        "sort-keys/sort-keys-fix": "warn",
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "variable",
+            "format": ["camelCase", "PascalCase", "UPPER_CASE"]
+          },
+          {
+            "selector": "variable",
+            "modifiers": ["unused"],
+            "format": ["camelCase", "PascalCase", "UPPER_CASE"],
+            "leadingUnderscore": "allow"
+          },
+          {
+            "selector": "function",
+            "format": ["camelCase", "PascalCase"]
+          },
+          {
+            "selector": "typeLike",
+            "format": ["PascalCase"]
+          },
+          {
+            "selector": "property",
+            "format": ["snake_case"]
+          }
+        ]
+      }
+    }
+  ]
+}

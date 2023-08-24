@@ -1,0 +1,11 @@
+**/dist/**/*
+.yarn/*
+.pnp.*
+playwright-report/
+blob-report/
+
+# Node only files (lacks some DOM things required by some linter rules)
+/apps/frontend/vite.config.ts
+
+# Others
+eslint-js-config.js
